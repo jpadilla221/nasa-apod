@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+def getProperty(String propertyFile, String propertyName) {
+    Properties properties = new Properties();
+    properties.load(new FileInputStream(propertyFile));
+    return String.format("\"%s\"", properties.getProperty(propertyName));
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -10,6 +15,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String","API_KEY",
+                getProperty("../../services/nasa.properties", "api_key")
     }
     buildTypes {
         release {
@@ -24,9 +31,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.2.0'
+    implementation 'androidx.navigation:navigation-ui:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
