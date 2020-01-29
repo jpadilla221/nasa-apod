@@ -46,7 +46,7 @@ public void setApodDate(Date date) {
     public void run() {
       @SuppressLint("SimpleDateFormat")
       DateFormat format = new SimpleDateFormat(DATE_FORMAT);
-      String formattedDAte = format.format(apodDate);
+      String formattedDate = format.format(apodDate);
       Gson gson = new GsonBuilder()
           .excludeFieldsWithoutExposeAnnotation()
           .setDateFormat("yyyy-MM-dd")
@@ -57,7 +57,7 @@ public void setApodDate(Date date) {
           .build();
       ApodService service = retrofit.create(ApodService.class);
       try {
-        Response<Apod> response =service.get(BuildConfig.API_KEY, "formattedDate").execute();
+        Response<Apod> response =service.get(BuildConfig.API_KEY, formattedDate).execute();
         if(response.isSuccessful()) {
           Apod apod = response.body();
           MainViewModel.this.apod.postValue(apod);
