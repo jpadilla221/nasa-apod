@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.nasaapod.service;
 
-import edu.cnm.deepdive.nasaapod.model.Apod;
+
+import edu.cnm.deepdive.nasaapod.model.entity.Apod;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
