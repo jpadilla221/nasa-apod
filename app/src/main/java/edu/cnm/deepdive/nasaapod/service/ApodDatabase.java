@@ -6,13 +6,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import edu.cnm.deepdive.nasaapod.model.dao.AccessDao;
 import edu.cnm.deepdive.nasaapod.model.dao.ApodDao;
+import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
 import edu.cnm.deepdive.nasaapod.service.ApodDatabase.Converters;
 import java.util.Date;
 
 @Database(
-    entities = {Apod.class},
+    entities = {Apod.class, Access.class},
     version = 1,
     exportSchema = true
 )
@@ -32,6 +34,9 @@ return InstanceHolder.INSTANCE;
   }
 
 public abstract ApodDao getApodDao();
+
+  public abstract AccessDao getAccessDao();
+
   private static class InstanceHolder {
 
     private static final ApodDatabase INSTANCE = Room.databaseBuilder(
